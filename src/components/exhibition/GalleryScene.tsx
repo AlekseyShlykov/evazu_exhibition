@@ -60,7 +60,7 @@ export function GalleryScene({ selectedArtwork, onSelect, room, onEnterOtherRoom
         )}
         <Preload all />
       </Suspense>
-      <CameraController room={room} action={action} onActionComplete={onActionComplete} />
+      <CameraController room={room} action={action} mobile={mobile} onActionComplete={onActionComplete} />
     </Canvas>
   );
 }

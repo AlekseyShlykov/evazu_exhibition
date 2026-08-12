@@ -135,7 +135,18 @@ export function GalleryRoom({ room, onEnterOtherRoom, onOpenGuestbook, lighting,
                   <meshStandardMaterial map={windowTexture} color={skyColor} emissive={skyColor} emissiveMap={windowTexture} emissiveIntensity={lighting.windowIntensity} roughness={.55} />
                 </mesh>
                 <mesh position={[0, 0, .025]}><boxGeometry args={[.055, 2.08, .06]} /><meshStandardMaterial color="#e6e2d8" /></mesh>
-                <mesh position={[0, 0, .02]}><boxGeometry args={[2.78, 2.13, .05]} /><meshStandardMaterial color="#d5d1c8" wireframe /></mesh>
+                {[-1.365, 1.365].map((x) => (
+                  <mesh key={`window-frame-x-${x}`} position={[x, 0, .02]}>
+                    <boxGeometry args={[.05, 2.13, .05]} />
+                    <meshStandardMaterial color="#d5d1c8" roughness={.82} />
+                  </mesh>
+                ))}
+                {[-1.04, 1.04].map((y) => (
+                  <mesh key={`window-frame-y-${y}`} position={[0, y, .02]}>
+                    <boxGeometry args={[2.78, .05, .05]} />
+                    <meshStandardMaterial color="#d5d1c8" roughness={.82} />
+                  </mesh>
+                ))}
               </group>
             )}
           </group>

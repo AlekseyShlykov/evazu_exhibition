@@ -25,17 +25,17 @@ export function LoadingScreen({ progress, complete, error, onEnter, leaving }: L
       transition={{ duration: reduceMotion ? 0 : .85, ease: [0.25, 1, 0.5, 1] }}
       aria-busy={!complete}
     >
-      <header className="flex justify-between text-[10px] uppercase tracking-[.24em] text-gallery-muted">
-        <span>{t("exhibition")}</span>
+      <header className="flex justify-end text-[10px] uppercase tracking-[.24em] text-gallery-muted">
         <span className="flex items-center gap-5"><LanguageSelector /><span>2026</span></span>
       </header>
       <section className="grid min-h-0 items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(240px,36vw)] md:gap-12">
         <div className="max-w-3xl">
-          <p className="mb-6 text-xs uppercase tracking-[.28em] text-gallery-muted">Ekaterina Zueva · {t("count")}</p>
           <h1 className="font-serif text-[clamp(3.15rem,9vw,8rem)] leading-[.88] tracking-[-.045em]">
             Find the<br />Camel!
           </h1>
-          <p className="mt-8 max-w-md text-sm leading-6 text-gallery-muted md:text-base">{t("intro")}</p>
+          <p className="mt-8 text-sm uppercase tracking-[.2em] text-gallery-muted md:text-base">
+            Online Exhibition by Ekaterina Zueva
+          </p>
         </div>
         <div className="flex h-[20svh] items-center justify-center md:h-[min(52svh,620px)]">
           <Image src={assetPath("/artworks/camel.jpg")} alt="Camel collage — Find the Camel!" width={1171} height={1280} priority className="h-full w-full object-contain drop-shadow-[0_18px_30px_rgba(37,32,26,.16)]" />

@@ -4,12 +4,12 @@ import * as THREE from "three";
 import { gallerySpot } from "@/data/artworks";
 
 export type GalleryAction = "door" | "book" | null;
-interface CameraControllerProps { room: 1 | 2; action: GalleryAction; onActionComplete: (action: Exclude<GalleryAction, null>) => void; }
+interface CameraControllerProps { room: 1 | 2; action: GalleryAction; mobile: boolean; onActionComplete: (action: Exclude<GalleryAction, null>) => void; }
 
 const homePosition = new THREE.Vector3(0, 1.65, -2);
 const ease = (value: number) => value * value * (3 - 2 * value);
 
-export function CameraController({ room, action, onActionComplete }: CameraControllerProps) {
+export function CameraController({ room, action, mobile, onActionComplete }: CameraControllerProps) {
   const { camera, gl } = useThree();
   const yaw = useRef(0);
   const pitch = useRef(0);
@@ -18,10 +18,12 @@ export function CameraController({ room, action, onActionComplete }: CameraContr
   const animation = useRef({ elapsed: 0, fromPosition: homePosition.clone(), fromQuaternion: new THREE.Quaternion(), finished: false });
 
   useEffect(() => {
-    yaw.current = 0;
+    // On narrow screens, center the frame at gallery spot 3 instead of the gap
+    // between the two works on the far wall.
+    yaw.current = mobile ? -Math.PI / 7 : 0;
     pitch.current = 0;
     camera.position.copy(homePosition);
-  }, [camera, room]);
+  }, [camera, mobile, room]);
 
   useEffect(() => {
     if (!action) return;

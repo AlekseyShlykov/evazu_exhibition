@@ -107,16 +107,21 @@ export function ExhibitionShell() {
           >{icon}</button>
         ))}
       </div>
-      <header className="pointer-events-none absolute inset-x-0 top-12 flex items-start justify-between p-5 text-[10px] uppercase tracking-[.2em] md:top-0 md:pl-52 md:p-7">
-        <a className="pointer-events-auto" href={routePath("/")}>Find the Camel!<br /><span className="text-gallery-muted">Ekaterina Zueva · Hall {room}</span></a>
-        <nav className="pointer-events-auto flex items-center gap-5" aria-label="Exhibition navigation">
+      <header className="pointer-events-none absolute inset-x-0 top-4 flex flex-col items-end px-5 text-[10px] uppercase tracking-[.2em] md:top-0 md:flex-row md:items-start md:justify-between md:p-7 md:pl-52">
+        <a className="pointer-events-auto order-2 mt-8 self-start md:order-1 md:mt-0" href={routePath("/")}>
+          <span className="hidden md:inline">Find the Camel!<br /></span>
+          <span className="text-gallery-muted">
+            <span className="md:hidden">Online Exhibition by </span>Ekaterina Zueva<span className="md:hidden">,</span><span className="hidden md:inline"> ·</span> Hall {room}
+          </span>
+        </a>
+        <nav className="pointer-events-auto order-1 flex items-center gap-5 md:order-2" aria-label="Exhibition navigation">
           <LanguageSelector />
-          <button type="button" onClick={() => setHintVisible(true)}>{t("help")}</button>
-          <a href={routePath("/guestbook")}>{t("guestbook")}</a>
+          <button className="hidden md:block" type="button" onClick={() => setHintVisible(true)}>{t("help")}</button>
+          <a className="hidden md:block" href={routePath("/guestbook")}>{t("guestbook")}</a>
         </nav>
       </header>
-      <NavigationHint visible={hintVisible && !selected} />
-      <div className="absolute right-5 top-20 grid max-h-[50svh] grid-cols-2 gap-2 md:right-7" aria-label="Choose an artwork">
+      <div className="hidden md:block"><NavigationHint visible={hintVisible && !selected} /></div>
+      <div className="absolute right-5 top-20 hidden max-h-[50svh] grid-cols-2 gap-2 md:right-7 md:grid" aria-label="Choose an artwork">
         {roomArtworks.map((artwork, index) => (
           <button
             key={artwork.id}
