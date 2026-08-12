@@ -46,7 +46,7 @@ export function loadGuestbookEntries(): Promise<GuestbookEntryData[]> {
       delete (window as unknown as Record<string, unknown>)[callbackName];
       if (error) reject(error); else resolve(entries ?? []);
     };
-    (window as unknown as Record<string, unknown>)[callbackName] = (entries: GuestbookEntryData[]) => finish(undefined, entries);
+    (window as unknown as Record<string, unknown>)[callbackName] = (entries: GuestbookEntryData[]) => finish(undefined, [...entries].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
     script.onerror = () => finish(new Error("The guestbook could not be reached."));
     script.src = `${googleSheetsWebhookUrl}?action=guestbook&callback=${encodeURIComponent(callbackName)}`;
     document.head.appendChild(script);

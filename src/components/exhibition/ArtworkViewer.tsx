@@ -14,7 +14,7 @@ export function ArtworkViewer({ artwork, onBack, onPreorder }: ArtworkViewerProp
     <motion.section
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="fixed inset-0 z-30 grid min-h-0 bg-gallery-paper md:grid-cols-[minmax(0,1fr)_clamp(290px,28vw,430px)]"
-      aria-label={`Information about ${artwork.title}`}
+      aria-label={`${t("infoAbout")} ${artwork.title}`}
     >
       <div className="relative flex min-h-0 items-center justify-center bg-[#d8d5cc] p-5 md:p-10">
         <Image src={assetPath(artwork.fullImage)} alt={artwork.title} width={1800} height={1800} priority className="h-full max-h-[62svh] w-full object-contain drop-shadow-[0_12px_24px_rgba(30,27,22,.16)] md:max-h-[calc(100svh-5rem)]" />
