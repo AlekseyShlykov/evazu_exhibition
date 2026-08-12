@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --paper: #f2f0e9;
+  --ink: #24241f;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); }
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #a7a194; color: #fff; }
+
+.guestbook-pages {
+  background-color: #eee8da;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.5), transparent 35%),
+    repeating-linear-gradient(90deg, rgba(95,78,58,.018) 0, rgba(95,78,58,.018) 1px, transparent 1px, transparent 5px);
+  box-shadow: inset 18px 0 24px -24px rgba(58,42,31,.55), inset -18px 0 24px -24px rgba(58,42,31,.5);
+}
+
+:focus-visible {
+  outline: 2px solid #24241f;
+  outline-offset: 4px;
+}
+
+.sr-only-focusable {
+  position: fixed;
+  left: 1rem;
+  top: -5rem;
+  z-index: 100;
+  background: var(--paper);
+  padding: .75rem 1rem;
+}
+.sr-only-focusable:focus { top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
